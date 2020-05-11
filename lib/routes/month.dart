@@ -7,7 +7,7 @@ class Month extends StatelessWidget { // <- (※1)
       appBar: AppBar(
         title: Text("20XX年 YY月"), // <- (※2)
       ),
-      body: Center(child: Text("月のページ") // <- (※3)
+      body: Center(child: Text("月のページだよ") // <- (※3)
       ),
     );
   }

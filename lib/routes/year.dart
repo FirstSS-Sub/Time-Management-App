@@ -7,7 +7,7 @@ class Year extends StatelessWidget { // <- (※1)
       appBar: AppBar(
         title: Text("20XX年"), // <- (※2)
       ),
-      body: Center(child: Text("年のページ") // <- (※3)
+      body: Center(child: Text("年のページだよ") // <- (※3)
       ),
     );
   }

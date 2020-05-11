@@ -7,7 +7,7 @@ class Home extends StatelessWidget { // <- (※1)
       appBar: AppBar(
         title: Text("ホーム"), // <- (※2)
       ),
-      body: Center(child: Text("ホーム") // <- (※3)
+      body: Center(child: Text("ホームだよ") // <- (※3)
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add',
