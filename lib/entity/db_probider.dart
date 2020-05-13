@@ -88,6 +88,9 @@ class DBProvider{
     }
 
 
+
+
+
     createType(Type type) async{
       final db = await database;
       var res = db.insert(_typeTable, type.toMapWithoutId());
@@ -96,12 +99,32 @@ class DBProvider{
 
     getAllTypes() async{
       final db = await database;
-      var res = db.query(_typeTable);
-      
-
+      var res = await db.query(_typeTable);
+      List<Type> list = res.isNotEmpty ? res.map((c) => Type.fromMap(c)).toList() : [];
+      return list;
     }
 
 
+
+    updateType(Type type) async {
+      final db = await database;
+      var res = await db.update(_typeTable,
+      type.toMap(),
+      where: "id = ?",
+      whereArgs: [type.id]     
+      );
+      return res;
+    }
+
+    deleteType(int id) async{
+      final db = await database;
+      var res = db.delete(
+        _typeTable,
+        where: "id = ?",
+        whereArgs:[id]
+      );
+      return res;
+    }
 
 
 
