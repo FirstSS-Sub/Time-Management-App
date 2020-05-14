@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_management_app/register.dart';
 
 class Home extends StatelessWidget { // <- (※1)
   @override
@@ -9,9 +10,16 @@ class Home extends StatelessWidget { // <- (※1)
       ),
       body: Center(child: Text("ホームだよ") // <- (※3)
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Add',
-        child: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        // tooltip: 'Next',
+        // child: Icon(Icons.arrow_right),
+        label: Text('Add'),
+        icon: Icon(Icons.add),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+          builder: (context) => Register())
+        ),
       ),
     );
   }
