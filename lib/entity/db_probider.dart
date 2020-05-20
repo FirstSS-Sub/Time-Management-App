@@ -47,6 +47,7 @@ class DBProvider{
        return await db.execute(
          "CREATE TABLE Type("
          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+         "red INTEGER,green INTEGER,blue INTEGER,"
         "name TEXT)"
        );
 

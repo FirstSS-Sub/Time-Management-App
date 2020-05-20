@@ -37,24 +37,44 @@ class Did{
 
 class Type{
   int id;
+  int red;
+  int green;
+  int blue;
   String name;
 
-  Type({this.id,@required this.name});
+  Type({this.id,@required this.name,@required this.red,@required this.green,@required blue});
 
   Type.newType(){
     name="";
+    red=0;
+    green=0;
+    blue=0;
+  }
+
+  bool isSameColor(Type another){
+    return red==another.red && green==another.green && blue == another.blue;
   }
 
   factory Type.fromMap(Map<String,dynamic> json) => Type(
     id: json["id"],
-    name: json["name"]
+    name: json["name"],
+    red: json["red"],
+    green: json["green"],
+    blue: json["blue"]
+
   );
 
   Map<String,dynamic> toMap() => {
     "id":id,
-    "name":name
+    "name":name,
+    "red":red,
+    "green":green,
+    "blue":blue
   };
   Map<String,dynamic> toMapWithoutId() => {
-     "name":name
+    "name":name,
+    "red":red,
+    "green":green,
+    "blue":blue
   };
 }
