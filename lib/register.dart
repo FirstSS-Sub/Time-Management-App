@@ -21,8 +21,8 @@ class Register extends StatelessWidget { // <- (※1)
             child: Text("登録する"),
             onPressed: () {
               // データベースに登録する処理
-              TypeBloc taskBloc = new TypeBloc();
-              Type task = new Type.newType();
+              DTypeBloc taskBloc = new DTypeBloc();
+              DType task = new DType.newType();
               task.name = _nameController.text;
               taskBloc.create(task);
 

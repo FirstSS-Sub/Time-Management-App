@@ -13,7 +13,7 @@ class DBProvider{
     static final DBProvider db = DBProvider._();
     static Database _database;
     static final _didTable = "Did";
-    static final _typeTable = "Type";
+    static final _typeTable = "DType";
 
     Future<Database> get database async{
       if(_database != null){
@@ -46,7 +46,7 @@ class DBProvider{
         ")");
 
        return await db.execute(
-         "CREATE TABLE Type("
+         "CREATE TABLE DType("
          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
          "red INTEGER,green INTEGER,blue INTEGER,"
         "name TEXT)"
@@ -93,7 +93,7 @@ class DBProvider{
 
 
 
-    createType(Type type) async{
+    createType(DType type) async{
       final db = await database;
       var res = db.insert(_typeTable, type.toMapWithoutId());
       return res;
@@ -102,14 +102,14 @@ class DBProvider{
     getAllTypes() async{
       final db = await database;
       var res = await db.query(_typeTable);
-      List<Type> list = res.isNotEmpty ? res.map((c) => Type.fromMap(c)).toList() : [];
+      List<DType> list = res.isNotEmpty ? res.map((c) => DType.fromMap(c)).toList() : [];
       debugPrint("$list");
       return list;
     }
 
 
 
-    updateType(Type type) async {
+    updateType(DType type) async {
       final db = await database;
       var res = await db.update(_typeTable,
       type.toMap(),

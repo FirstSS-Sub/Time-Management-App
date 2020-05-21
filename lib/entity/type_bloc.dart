@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'models.dart';
 import 'db_probider.dart';
-class TypeBloc{
-  final _typeController = StreamController<List<Type>>();
-  Stream<List<Type>> get typeStream => _typeController.stream;
+class DTypeBloc{
+  final _typeController = StreamController<List<DType>>();
+  Stream<List<DType>> get typeStream => _typeController.stream;
 
 
   getTypes() async{
     _typeController.sink.add(await DBProvider.db.getAllTypes());
   }
 
-  TypeBloc() {
+  DTypeBloc() {
     getTypes();
   }
 
@@ -20,7 +20,7 @@ class TypeBloc{
     _typeController.close();
   }
 
-  create(Type type){
+  create(DType type){
 
     DBProvider.db.createType(type);
     debugPrint("aaa");
@@ -28,7 +28,7 @@ class TypeBloc{
 
   }
 
-  update(Type type){
+  update(DType type){
     DBProvider.db.updateType(type);
     getTypes();
   }
