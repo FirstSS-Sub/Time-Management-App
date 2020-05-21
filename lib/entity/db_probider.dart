@@ -94,50 +94,24 @@ class DBProvider{
 
 
     createType(DType dtype) async{
-      if(await checkNameConflict(dtype)){
-        //通知する
-        return;
-      }
 
-      if(await checkColorConflict(dtype)){
-        //通知する
-        return;
-      }
       final db = await database;
       var res = db.insert(_typeTable, dtype.toMapWithoutId());
       return res;
     }
 
-    getAllTypes() async{
+    Future<List<DType>> getAllTypes() async{
       final db = await database;
       var res = await db.query(_typeTable);
       List<DType> list = res.isNotEmpty ? res.map((c) => DType.fromMap(c)).toList() : [];
       debugPrint("$list");
       return list;
     }
-    // 名前または色が一致するものがあったらtrueを返す
-    Future<bool> checkNameConflict(DType dtype) async{
-      Future<List<DType>> all = getAllTypes();
-      return (await all).any((element) => dtype.isSameName(element));
-    }
-
-    Future<bool> checkColorConflict(DType dtype) async{
-      Future<List<DType>> all = getAllTypes();
-      return (await all).any((element) => dtype.isSameColor(element));
-    }
 
 
 
     updateType(DType dtype) async {
-      if(await checkNameConflict(dtype)){
-        //通知する
-        return;
-      }
 
-      if(await checkColorConflict(dtype)){
-        //通知する
-        return;
-      }
       final db = await database;
       var res = await db.update(_typeTable,
       dtype.toMap(),
