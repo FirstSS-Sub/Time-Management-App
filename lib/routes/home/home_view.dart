@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
       body: StreamBuilder<List<DType>>(
         stream: _bloc.typeStream,
         builder: (BuildContext context, AsyncSnapshot<List<DType>> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.data.length != 0) {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, int index) {
@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
                 debugPrint("$index");
                 return Card(
                   child: ListTile(
-                    leading: Icon(Icons.list),
+                    //leading: Icon(Icons.list),
                     title: Text("${typeList.name}"),
                     subtitle: Text('sub_'+index.toString()),
                     trailing: Icon(Icons.edit),
