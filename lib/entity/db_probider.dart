@@ -37,7 +37,7 @@ class DBProvider{
 
     Future<void> _createTable(Database db,int version) async{
 
-       var x= await db.execute(
+        await db.execute(
         "CREATE TABLE Did("
         "id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "type INTEGER,"
@@ -49,7 +49,7 @@ class DBProvider{
          "CREATE TABLE DType("
          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
          "red INTEGER,green INTEGER,blue INTEGER,"
-        "name TEXT)"
+        "name TEXT UNIQUE)"
        );
 
     }
@@ -93,9 +93,18 @@ class DBProvider{
 
 
 
-    createType(DType type) async{
+    createType(DType dtype) async{
+      if(await checkNameConflict(dtype)){
+        //通知する
+        return;
+      }
+
+      if(await checkColorConflict(dtype)){
+        //通知する
+        return;
+      }
       final db = await database;
-      var res = db.insert(_typeTable, type.toMapWithoutId());
+      var res = db.insert(_typeTable, dtype.toMapWithoutId());
       return res;
     }
 
@@ -106,15 +115,34 @@ class DBProvider{
       debugPrint("$list");
       return list;
     }
+    // 名前または色が一致するものがあったらtrueを返す
+    Future<bool> checkNameConflict(DType dtype) async{
+      Future<List<DType>> all = getAllTypes();
+      return (await all).any((element) => dtype.isSameName(element));
+    }
+
+    Future<bool> checkColorConflict(DType dtype) async{
+      Future<List<DType>> all = getAllTypes();
+      return (await all).any((element) => dtype.isSameColor(element));
+    }
 
 
 
-    updateType(DType type) async {
+    updateType(DType dtype) async {
+      if(await checkNameConflict(dtype)){
+        //通知する
+        return;
+      }
+
+      if(await checkColorConflict(dtype)){
+        //通知する
+        return;
+      }
       final db = await database;
       var res = await db.update(_typeTable,
-      type.toMap(),
+      dtype.toMap(),
       where: "id = ?",
-      whereArgs: [type.id]
+      whereArgs: [dtype.id]
       );
       return res;
     }

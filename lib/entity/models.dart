@@ -31,6 +31,26 @@ class Did{
     "start" : start.toUtc().toIso8601String(),
     "end" : end.toUtc().toIso8601String()
   };
+  //指定区間の共通部分があるかないか
+  bool hasCommon(DateTime rstart,DateTime rend){
+    if(start.compareTo(rend)==1) return false;
+    if(end.compareTo(rstart)==-1)return false;
+  }
+  //指定区間との共通部分を返す
+  Duration commonRange(DateTime rstart,DateTime rend){
+    if(hasCommon(rstart, rend)){
+      DateTime st,ed;
+      st = start.compareTo(rstart) < 0 ? rstart : start;
+      ed = end.compareTo(rend) > 0 ? rend : end;
+      return st.difference(ed);
+    }else{
+      return new Duration(seconds:0);
+
+    }
+
+  }
+
+
 
 }
 
@@ -55,6 +75,11 @@ class DType{
     return red==another.red && green==another.green && blue == another.blue;
   }
 
+  bool isnameConflict(DType another){
+    return  name == another.name;
+  }
+
+
   factory DType.fromMap(Map<String,dynamic> json) => DType(
     id: json["id"],
     name: json["name"],
@@ -77,4 +102,7 @@ class DType{
     "green":green,
     "blue":blue
   };
+
+
+
 }
