@@ -72,11 +72,11 @@ class DType{
   }
 
   bool isSameColor(DType another){
-    return red==another.red && green==another.green && blue == another.blue;
+    return id != another.id && red==another.red && green==another.green && blue == another.blue;
   }
 
-  bool isnameConflict(DType another){
-    return  name == another.name;
+  bool isSameName(DType another){
+    return  name == another.name && id != another.id;
   }
 
 
