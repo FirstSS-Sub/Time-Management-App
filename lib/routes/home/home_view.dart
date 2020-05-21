@@ -22,12 +22,27 @@ class HomeView extends StatelessWidget {
               itemBuilder: (context, int index) {
                 DType typeList = snapshot.data[index];
                 debugPrint("$index");
+                
                 return Card(
-                  child: ListTile(
-                    //leading: Icon(Icons.list),
-                    title: Text("${typeList.name}"),
-                    subtitle: Text('sub_'+index.toString()),
-                    trailing: Icon(Icons.edit),
+                  child: InkWell(
+                    onTap: (){
+                      // TODO: 編集画面の実装
+                    },
+                    child: ListTile(
+                      leading: Container(
+                          height: 40.0,
+                          width: 40.0,
+                          color: Color.fromARGB(
+                              255,
+                              typeList.red,
+                              typeList.green,
+                              typeList.blue
+                          )
+                      ),
+                      title: Text("${typeList.name}"),
+                      subtitle: Text('sub_'+index.toString()),
+                      trailing: Icon(Icons.edit),
+                    ),
                   ),
                 );
               }
