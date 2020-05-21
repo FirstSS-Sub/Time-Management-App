@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:time_management_app/entity/models.dart';
+import 'entity/type_bloc.dart';
 
 class Register extends StatelessWidget { // <- (※1)
+  var _nameController = TextEditingController(); //TextFieldの中身を色々操作するためのコントローラ
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,14 +14,20 @@ class Register extends StatelessWidget { // <- (※1)
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           // containerだらけになると汚いので、別途Widgetで記述
-          _textArea(),
+          _textArea(_nameController),
           _colorArea(),
           RaisedButton(
             elevation: 4.0, // 影の深さ
             child: Text("登録する"),
             onPressed: () {
               // データベースに登録する処理
+              DTypeBloc taskBloc = new DTypeBloc();
+              DType task = new DType.newType();
+              task.name = _nameController.text;
+              taskBloc.create(task);
+
               // 元の画面に戻る処理
+              Navigator.of(context).pop();
             },
             color: Colors.orange,
           ),
@@ -27,7 +36,7 @@ class Register extends StatelessWidget { // <- (※1)
     );
   }
 
-  Widget _textArea() {
+  Widget _textArea(_nameController) {
     return Container(
       height: 100.0,
       width: double.infinity,
@@ -36,6 +45,7 @@ class Register extends StatelessWidget { // <- (※1)
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.all(10.0),
       child: TextField(
+        controller: _nameController,
         decoration: InputDecoration(
             hintText: '作業名を入力してください'
         ),

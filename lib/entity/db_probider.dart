@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -12,7 +13,7 @@ class DBProvider{
     static final DBProvider db = DBProvider._();
     static Database _database;
     static final _didTable = "Did";
-    static final _typeTable = "Type";
+    static final _typeTable = "DType";
 
     Future<Database> get database async{
       if(_database != null){
@@ -43,16 +44,16 @@ class DBProvider{
         "start TEXT,"
         "end TEXT"
         ")");
-      
+
        return await db.execute(
-         "CREATE TABLE Type("
+         "CREATE TABLE DType("
          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
          "red INTEGER,green INTEGER,blue INTEGER,"
         "name TEXT)"
        );
 
     }
-     
+
 
     createDid(Did did)async{
       final db = await database;
@@ -73,7 +74,7 @@ class DBProvider{
       var res = await db.update(_didTable,
       did.toMap(),
       where: "id = ?",
-      whereArgs: [did.id]     
+      whereArgs: [did.id]
       );
       return res;
     }
@@ -92,7 +93,7 @@ class DBProvider{
 
 
 
-    createType(Type type) async{
+    createType(DType type) async{
       final db = await database;
       var res = db.insert(_typeTable, type.toMapWithoutId());
       return res;
@@ -101,18 +102,19 @@ class DBProvider{
     getAllTypes() async{
       final db = await database;
       var res = await db.query(_typeTable);
-      List<Type> list = res.isNotEmpty ? res.map((c) => Type.fromMap(c)).toList() : [];
+      List<DType> list = res.isNotEmpty ? res.map((c) => DType.fromMap(c)).toList() : [];
+      debugPrint("$list");
       return list;
     }
 
 
 
-    updateType(Type type) async {
+    updateType(DType type) async {
       final db = await database;
       var res = await db.update(_typeTable,
       type.toMap(),
       where: "id = ?",
-      whereArgs: [type.id]     
+      whereArgs: [type.id]
       );
       return res;
     }
