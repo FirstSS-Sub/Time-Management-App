@@ -49,16 +49,20 @@ class RegisterView extends StatelessWidget {
                       task.red = taskRed;
                       task.green = taskGreen;
                       task.blue = taskBlue;
-                      snapshot.data.forEach((data) {
+                      for (final data in snapshot.data) {
                         if (task.isSameName(data)) {
                           print("name conflict");
                           _sameNameFlag = 1;
+                          break;
                         }
+                        _sameNameFlag = 0;
                         if (task.isSameColor(data)) {
                           print("color conflict");
                           _sameColorFlag = 1;
+                          break;
                         }
-                      });
+                        _sameColorFlag = 0;
+                      }
 
                       if (this._formKey.currentState.validate()) {
                         this._formKey.currentState.save();
