@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:time_management_app/entity/models.dart';
+import 'package:time_management_app/routes/home/home_provider.dart';
 import 'entity/type_bloc.dart';
+import 'package:time_management_app/root.dart';
 
 class Register extends StatelessWidget { // <- (※1)
   var _nameController = TextEditingController(); //TextFieldの中身を色々操作するためのコントローラ
@@ -27,7 +29,15 @@ class Register extends StatelessWidget { // <- (※1)
               taskBloc.create(task);
 
               // 元の画面に戻る処理
-              Navigator.of(context).pop();
+              //Navigator.of(context).pop(); // これだと戻るボタンを押していることになってしまう
+              //Navigator.of(context).pushReplacementNamed("/"); // これだと直前のものしか消えない
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => RootWidget()
+                ),
+                (_) => false, // どこまで遡って削除するかの条件 falseだと全削除
+              );
             },
             color: Colors.orange,
           ),
