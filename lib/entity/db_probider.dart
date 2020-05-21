@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -43,7 +44,7 @@ class DBProvider{
         "start TEXT,"
         "end TEXT"
         ")");
-      
+
        return await db.execute(
          "CREATE TABLE Type("
          "id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -52,7 +53,7 @@ class DBProvider{
        );
 
     }
-     
+
 
     createDid(Did did)async{
       final db = await database;
@@ -73,7 +74,7 @@ class DBProvider{
       var res = await db.update(_didTable,
       did.toMap(),
       where: "id = ?",
-      whereArgs: [did.id]     
+      whereArgs: [did.id]
       );
       return res;
     }
@@ -102,6 +103,7 @@ class DBProvider{
       final db = await database;
       var res = await db.query(_typeTable);
       List<Type> list = res.isNotEmpty ? res.map((c) => Type.fromMap(c)).toList() : [];
+      debugPrint("$list");
       return list;
     }
 
@@ -112,7 +114,7 @@ class DBProvider{
       var res = await db.update(_typeTable,
       type.toMap(),
       where: "id = ?",
-      whereArgs: [type.id]     
+      whereArgs: [type.id]
       );
       return res;
     }

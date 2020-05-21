@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
+
 import 'models.dart';
 import 'db_probider.dart';
 class TypeBloc{
@@ -21,6 +23,7 @@ class TypeBloc{
   create(Type type){
 
     DBProvider.db.createType(type);
+    debugPrint("aaa");
     getTypes();
 
   }
