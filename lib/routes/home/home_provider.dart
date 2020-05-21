@@ -8,8 +8,8 @@ class Home extends StatelessWidget { // <- (※1)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Provider<TypeBloc>(
-        create: (context) => new TypeBloc(),
+      body: Provider<DTypeBloc>(
+        create: (context) => new DTypeBloc(),
         dispose: (context, bloc) => bloc.dispose(),
         child: HomeView(),
       ),
