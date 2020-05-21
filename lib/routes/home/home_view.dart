@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
       body: StreamBuilder<List<DType>>(
         stream: _bloc.typeStream,
         builder: (BuildContext context, AsyncSnapshot<List<DType>> snapshot) {
-          if (snapshot.data.length != 0) {
+          if (snapshot.data != null) {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, int index) {

@@ -95,7 +95,7 @@ class RegisterView extends StatelessWidget {
       // 開発時に見やすくするために色付けしとく
       // color: Colors.red,
       padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.all(10.0),
+      margin: EdgeInsets.all(18.0),
       child: TextFormField(
         controller: _nameController,
         decoration: InputDecoration(
@@ -124,7 +124,7 @@ class RegisterView extends StatelessWidget {
 
   Widget _colorArea() {
     return Container(
-      height: 300.0,
+      height: 270.0,
       child: Center(
         child: CircleColorPicker(
           initialColor: Colors.blue,
