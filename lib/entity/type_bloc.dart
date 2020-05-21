@@ -21,9 +21,8 @@ class DTypeBloc{
   }
 
   create(DType type){
-
+    debugPrint("aaaaaaaaaaaaaaaaa");
     DBProvider.db.createType(type);
-    debugPrint("aaa");
     getTypes();
 
   }

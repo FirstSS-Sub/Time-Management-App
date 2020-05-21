@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_management_app/entity/models.dart';
 import 'package:time_management_app/entity/type_bloc.dart';
-import 'package:time_management_app/register.dart';
+import 'package:time_management_app/register/register_provider.dart';
 
 class HomeView extends StatelessWidget {
   @override

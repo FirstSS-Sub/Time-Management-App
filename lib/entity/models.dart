@@ -62,7 +62,7 @@ class DType{
   int blue;
   String name;
 
-  DType({this.id,@required this.name,@required this.red,@required this.green,@required blue});
+  DType({this.id,@required this.name,@required this.red,@required this.green,@required this.blue});
 
   DType.newType(){
     name="";
