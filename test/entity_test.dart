@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:time_management_app/entity/db_probider.dart';
+import 'package:time_management_app/entity/db_provider.dart';
 import 'package:time_management_app/entity/models.dart';
 
 

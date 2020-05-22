@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:time_management_app/root.dart';
 import 'package:time_management_app/entity/models.dart';
 import 'package:time_management_app/entity/type_bloc.dart';
-// import 'package:time_management_app/register/register_provider.dart';
 
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 

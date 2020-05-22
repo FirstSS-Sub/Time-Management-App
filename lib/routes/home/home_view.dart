@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time_management_app/edit/edit_provider.dart';
 import 'package:time_management_app/entity/models.dart';
 import 'package:time_management_app/entity/type_bloc.dart';
 import 'package:time_management_app/register/register_provider.dart';
+
 
 class HomeView extends StatelessWidget {
   @override
@@ -24,10 +26,13 @@ class HomeView extends StatelessWidget {
                 debugPrint("$index");
                 
                 return Card(
-                  child: InkWell(
-                    onTap: (){
-                      // TODO: 編集画面の実装
-                    },
+                  child: InkWell( // タップできるようになる
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Edit(typeList)
+                        )
+                    ),
                     child: ListTile(
                       leading: Container(
                           height: 40.0,
