@@ -22,17 +22,17 @@ class DBProvider{
 
       _database =await initDB();
       return _database;
-      }
+    }
 
-     Future<Database> initDB() async{
+    Future<Database> initDB() async{
 
-        Directory documentsDirectory = await getApplicationDocumentsDirectory();
+      Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
-        String path= join(documentsDirectory.path,"time_managemaent_app.db");
+      String path= join(documentsDirectory.path,"time_managemaent_app.db");
 
-        return await openDatabase(path,version: 1,onCreate: _createTable);
+      return await openDatabase(path,version: 1,onCreate: _createTable);
 
-     }
+    }
 
 
     Future<void> _createTable(Database db,int version) async{

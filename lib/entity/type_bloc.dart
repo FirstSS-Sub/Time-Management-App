@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'models.dart';
-import 'db_probider.dart';
+import 'db_provider.dart';
 class DTypeBloc{
   final _typeController = StreamController<List<DType>>();
   Stream<List<DType>> get typeStream => _typeController.stream;
@@ -21,7 +21,6 @@ class DTypeBloc{
   }
 
   create(DType type){
-    debugPrint("aaaaaaaaaaaaaaaaa");
     DBProvider.db.createType(type);
     getTypes();
 
